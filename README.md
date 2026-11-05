@@ -2,7 +2,7 @@
   <img src="assets/dotbble.png" alt="Dotbble: a fuzzy blue ring above the Dotbble wordmark" width="640">
 </p>
 
-# Dotbble
+# dotbble
 
 **Talk to your ChatGPT dot through a Pebble Index ring.**
 
