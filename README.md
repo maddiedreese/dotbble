@@ -6,7 +6,7 @@
 
 **Talk to your ChatGPT dot through a Pebble Index ring.**
 
-Hold the button, say what you want, and release. Pebble transcribes your recording, Dotbble sends the text to your dot, and your dot responds in its existing conversation. Each message includes an instruction to act immediately—you don't have to say “check for an event” or repeat the instruction yourself.
+Hold the button, say what you want, and release. Pebble transcribes your recording, dotbble sends the text to your dot, and your dot responds in its existing conversation. Each message includes an instruction to act immediately—you don't have to say “check for an event” or repeat the instruction yourself.
 
 This setup works with the Mac and pairing tunnel turned off. Pair once; the connection has no scheduled expiration and survives phone restarts.
 
@@ -39,7 +39,7 @@ You do not need to sign up for a separate hosting or relay service, build an iPh
 
 ### Tested configuration
 
-The working setup was confirmed with **Pebble 1.15.0.1**: direct delivery with the Mac off, persistence after restarting the phone, and receipt while the phone remained locked. The physical ring setup was subsequently confirmed working. Dotbble 1.0.0 packages that implementation with public setup tools, updated naming, and automated tests.
+The working setup was confirmed with **Pebble 1.15.0.1**: direct delivery with the Mac off, persistence after restarting the phone, and receipt while the phone remained locked. The physical ring setup was subsequently confirmed working. dotbble 1.0.0 packages that implementation with public setup tools, updated naming, and automated tests.
 
 Pebble's [current plugin guide](https://developer.repebble.com/guides/plugins/preview/) documents changes beginning in 1.16. The instructions below identify the 1.15.0.1 menu path and the newer path; newer app versions are not covered by the confirmed compatibility baseline. Check that the plugin settings load before doing the account-pairing steps.
 
@@ -201,7 +201,7 @@ Cloud transcription and event delivery require internet access. These checks ver
 
 ## Privacy and connection lifecycle
 
-The plugin stores its credential and any unconfirmed message in ordinary Pebble plugin storage. It does not use the iPhone Keychain. Successful delivery clears the pending transcript from **Dotbble's** storage; Pebble and your cloud services have their own history and retention. Local diagnostics contain timestamps, stage names, and HTTP statuses, not transcripts or credentials.
+The plugin stores its credential and any unconfirmed message in ordinary Pebble plugin storage. It does not use the iPhone Keychain. Successful delivery clears the pending transcript from **dotbble's** storage; Pebble and your cloud services have their own history and retention. Local diagnostics contain timestamps, stage names, and HTTP statuses, not transcripts or credentials.
 
 Keep `.private/` and your pairing JSON out of Git, issue reports, screenshots, and shared ZIPs. To stop using Dotbble, tap **Disconnect and clear** on the phone and disable/delete the event subscription in ChatGPT. Removing a local credential does not recall a message already sent or revoke copies of that credential.
 
@@ -236,4 +236,4 @@ To change what accompanies every spoken request, edit `MESSAGE_PREAMBLE` in `pho
 - [OpenAI MCP Events](https://developers.openai.com/plugins/build/mcp-events), [Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels), and [custom MCP setup](https://developers.openai.com/api/docs/guides/custom-mcp-server)
 - [ChatGPT dots](https://learn.chatgpt.com/docs/dots)
 
-Dotbble is an independent project, not affiliated with Pebble or OpenAI. Released under the [MIT license](LICENSE). The bundled HMAC/SHA-256 implementation is from [@noble/hashes](https://github.com/paulmillr/noble-hashes), also MIT; its [license](phone/LICENSE-noble-hashes.txt) is included in the PBW.
+dotbble is an independent project, not affiliated with Pebble or OpenAI. Released under the [MIT license](LICENSE). The bundled HMAC/SHA-256 implementation is from [@noble/hashes](https://github.com/paulmillr/noble-hashes), also MIT; its [license](phone/LICENSE-noble-hashes.txt) is included in the PBW.
