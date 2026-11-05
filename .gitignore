@@ -1,0 +1,13 @@
+# Pairing credentials and machine-local tools must never be committed.
+.private/
+MY-PHONE-PAIRING*.json
+tools/
+*.log
+.env
+.env.*
+!*.example
+__pycache__/
+*.py[cod]
+node_modules/
+build/
+.DS_Store

@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dotbble</title>
+<style>:root{color-scheme:light dark}body{font:16px -apple-system,system-ui,sans-serif;line-height:1.5;padding:22px;margin:0}h1{font-size:24px}button,textarea{font:inherit;padding:12px;border:1px solid #8888;border-radius:10px;margin-bottom:10px}textarea{box-sizing:border-box;width:100%;height:150px}pre{white-space:pre-wrap;overflow-wrap:anywhere}.muted{font-size:13px;opacity:.75}</style></head><body>
+<h1>Dotbble</h1><p class="muted">Version 1.0.0 · direct ring-to-dot messaging</p>
+<p>Every new message includes an instruction to act on your spoken request now and reply in your dot conversation, without waiting for another message. Your spoken words follow that instruction unchanged. This plugin handles in-chat requests only. The instruction is sent every time; it does not rely on the dot remembering an earlier message.</p>
+<p>Sends note text from this phone directly to OpenAI. A newly granted non-expiring pairing has no scheduled expiry or ten-message cap. Old test pairings retain their original limits. App restarts preserve the pairing and message counter. Removing the plugin, clearing its data, or revoking the connection can require pairing again. An accepted request is not a confirmed reply from your dot.</p>
+<p>This plugin uses ordinary plugin storage, not the iOS Keychain. The pairing credential and any unconfirmed message are stored in the plugin's local storage. Disconnect clears them. Keep cloud backup off.</p>
+<p>Diagnostics record local timestamps when the plugin receives a note, signs the request, calls fetch, and receives an HTTP response. They contain no transcript or credentials. Times are UTC; they do not detect whether the screen is locked. Only the last 40 stages are kept.</p>
+<label for="pairing">Private pairing JSON</label><textarea id="pairing" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="Wait for a pairing file before pairing."></textarea>
+<button id="pair" disabled>Pair connection</button><button id="refresh" disabled>Refresh status</button>
+<pre id="status" role="status">Waiting for Pebble…</pre>
+<button id="retry" disabled>Retry pending</button><button id="disconnect" disabled>Disconnect and clear</button>
+<p class="muted">Before retrying an unconfirmed request, check your dot. Retries preserve the event ID; separately recording the same phrase creates a new event. A request already sent cannot be recalled by disconnecting.</p>
+<script>
+async function command(type){var box=document.getElementById('pairing');var message={type:type};if(type==='pair')message.pairing=box.value;try{var value=await Pebble.sendMessage('plugin',message);document.getElementById('status').textContent=value.error||JSON.stringify(value,null,2);if(type==='pair'&&!value.error)box.value='';if(type==='disconnect')box.value='';}catch(_){document.getElementById('status').textContent='Could not reach the plugin.';}}
+['pair','refresh','retry','disconnect'].forEach(function(id){document.getElementById(id).onclick=function(){command(id==='refresh'?'status':id);};});
+Pebble.addEventListener('ready',function(event){if(event.target!=='plugin')return;['pair','refresh','retry','disconnect'].forEach(function(id){document.getElementById(id).disabled=false;});command('status');});
+</script></body></html>

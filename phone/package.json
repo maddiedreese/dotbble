@@ -1,0 +1,70 @@
+{
+  "name": "dotbble",
+  "version": "1.0.0",
+  "author": "Maddie Dreese",
+  "pebble": {
+    "displayName": "Dotbble",
+    "uuid": "c56b748e-5a9d-47f2-a3c0-25e8a73b4954",
+    "sdkVersion": "3",
+    "configPage": "config.html",
+    "usesPermissions": [
+      {
+        "name": "Internet",
+        "parameters": {
+          "domains": [
+            "openai.com",
+            "chatgpt.com"
+          ]
+        }
+      }
+    ],
+    "plugin": {
+      "description": "Send your Pebble Index transcripts directly to your ChatGPT dot.",
+      "script": "plugin.js",
+      "sources": [
+        {
+          "category": "notes",
+          "items": [
+            "configured",
+            "destination"
+          ],
+          "properties": {
+            "name": [
+              "shortText"
+            ],
+            "configured": [
+              "boolean"
+            ]
+          },
+          "supportsMultiple": false,
+          "callerPermissions": [],
+          "suggestedRefreshIntervalSec": 60
+        }
+      ],
+      "actions": [
+        {
+          "name": "create_note",
+          "description": "Send the note text with an instruction to act now to the owner's paired ChatGPT dot.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ]
+          },
+          "targets": [
+            "notes/destination"
+          ],
+          "destructive": false,
+          "requiresConfirmation": false,
+          "callerPermissions": []
+        }
+      ]
+    }
+  },
+  "license": "MIT"
+}

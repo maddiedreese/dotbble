@@ -1,0 +1,17 @@
+{
+  "name": "dotbble",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20.19" },
+  "scripts": {
+    "build": "node scripts/build.mjs && python3 scripts/package.py",
+    "test": "npm run build && node --test tests/*.cjs && python3 -m unittest discover -v",
+    "check:dist": "python3 scripts/package.py --check"
+  },
+  "devDependencies": {
+    "@noble/hashes": "2.4.0",
+    "esbuild": "0.28.2"
+  }
+}
