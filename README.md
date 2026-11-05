@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/dotbble.png" alt="Dotbble: a fuzzy blue ring above the Dotbble wordmark" width="640">
+</p>
+
 # Dotbble
 
 **Talk to your ChatGPT dot through a Pebble Index ring.**
@@ -39,7 +43,25 @@ The working setup was confirmed with **Pebble 1.15.0.1**: direct delivery with t
 
 Pebble's [current plugin guide](https://developer.repebble.com/guides/plugins/preview/) documents changes beginning in 1.16. The instructions below identify the 1.15.0.1 menu path and the newer path; newer app versions are not covered by the confirmed compatibility baseline. Check that the plugin settings load before doing the account-pairing steps.
 
-## Setup
+## Set up with Codex or your dot
+
+Give your agent this repository and the following prompt. [SETUP.md](SETUP.md) is the complete agent runbook; it covers account checks, installation, pairing, and verification.
+
+```text
+Set up https://github.com/maddiedreese/dotbble for my Pebble Index ring and my
+own ChatGPT dot. Read README.md and SETUP.md, then carry out the setup.
+Use my own account and a private local setup folder. Handle the computer-side
+work with your available tools, including the temporary OpenAI tunnel and
+non-expiring subscription. Ask me only for missing account/dot choices,
+private key entry, and phone actions you cannot perform. Never ask me to
+paste an API key or pairing JSON into chat. Stop the Mac pairing program
+before testing direct phone delivery. Verify a reply in my dot with the Mac
+off, then help me test phone restart and locked-phone delivery.
+```
+
+Codex with access to your Mac's terminal and signed-in browser can perform the computer-side steps. A dot can use the same guide if it has those tools; without them, it can walk you through the commands and phone steps. The agent should report what it actually completed and what still needs your action.
+
+## Manual setup
 
 ### 1. Connect the ring and install Dotbble
 
